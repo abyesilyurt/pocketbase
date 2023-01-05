@@ -13,13 +13,28 @@ class BaseCrudService(BaseService, ABC):
         """Response data decoder"""
 
     def _get_full_list(
-        self, base_path: str, batch_size: int = 100, query_params: dict = {}
+        self, 
+        base_path: str,
+        batch: int = 200, 
+        expand: str = None,
+        filter: str = None,
+        sort: str = None,
+        query: dict = None,
+        headers: dict = None,
     ) -> list[BaseModel]:
-
         result: list[BaseModel] = []
 
         def request(result: list[BaseModel], page: int) -> list:
-            list = self._get_list(base_path, page, batch_size, query_params)
+            list = self._get_list(
+                base_path,
+                page=page,
+                per_page=batch,
+                expand=expand,
+                filter=filter,
+                sort=sort,
+                query=query,
+                headers=headers,
+            )
             items = list.items
             total_items = list.total_items
             result += items

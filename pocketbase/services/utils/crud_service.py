@@ -12,9 +12,23 @@ class CrudService(BaseCrudService, ABC):
         """Base path for the crud actions (without trailing slash, eg. '/admins')."""
 
     def get_full_list(
-        self, batch_size: int = 100, query_params: dict = {}
+        self,
+        batch: int = 200, 
+        expand: str = None,
+        filter: str = None,
+        sort: str = None,
+        query: dict = None,
+        headers: dict = None,
     ) -> list[BaseModel]:
-        return self._get_full_list(self.base_crud_path(), batch_size, query_params)
+        return self._get_full_list(
+            self.base_crud_path(),
+            batch=batch,
+            expand=expand,
+            filter=filter,
+            sort=sort,
+            query=query,
+            headers=headers,
+        )
 
     def get_list(
         self,
