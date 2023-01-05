@@ -65,20 +65,18 @@ class Users(CrudService):
         ]
         return AuthMethodsList(email_password, auth_providers)
 
-    def auth_via_email(
+    def auth_with_password(
         self, email: str, password: str, body_params: dict = {}, query_params: dict = {}
     ) -> UserAuthResponse:
         """
-        Authenticate a user via its email and password.
+        Authenticate an admin account by its email and password
+        and returns a new admin token and data.
 
-        On success, this method also automatically updates
-        the client's AuthStore data and returns:
-        - new user authentication token
-        - the authenticated user model record
+        On success this method automatically updates the client's AuthStore data.
         """
-        body_params.update({"email": email, "password": password})
+        body_params.update({"identity": email, "password": password})
         response_data = self.client.send(
-            self.base_crud_path() + "/auth-via-email",
+            self.base_crud_path() + "/auth-with-password",
             {
                 "method": "POST",
                 "params": query_params,
