@@ -17,9 +17,25 @@ class CrudService(BaseCrudService, ABC):
         return self._get_full_list(self.base_crud_path(), batch_size, query_params)
 
     def get_list(
-        self, page: int = 1, per_page: int = 30, query_params: dict = {}
+        self,
+        page: int = 1, 
+        per_page: int = 30,
+        expand: str = None,
+        filter: str = None,
+        sort: str = None,
+        query: dict = None,
+        headers: dict = None,
     ) -> ListResult:
-        return self._get_list(self.base_crud_path(), page, per_page, query_params)
+        return self._get_list(
+            self.base_crud_path(), 
+            page=page,
+            per_page=per_page,
+            expand=expand,
+            filter=filter,
+            sort=sort,
+            query=query,
+            headers=headers,
+        )
 
     def get_one(self, id: str, query_params: dict = {}) -> BaseModel:
         return self._get_one(self.base_crud_path(), id, query_params)

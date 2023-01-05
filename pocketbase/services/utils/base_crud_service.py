@@ -29,12 +29,25 @@ class BaseCrudService(BaseService, ABC):
 
         return request(result, 1)
 
+    # https://github.com/pocketbase/dart-sdk/blob/cb04918f918de8b5815212bb1a52941fc6fe0e10/lib/src/services/base_crud_service.dart#L56
     def _get_list(
-        self, base_path: str, page: int = 1, per_page: int = 30, query_params: dict = {}
+        self,
+        base_path: str,
+        *,
+        page: int = 1, 
+        per_page: int = 30,
+        expand: str = None,
+        filter: str = None,
+        sort: str = None,
+        query: dict = None,
+        headers: dict = None,
     ) -> ListResult:
-        query_params.update({"page": page, "perPage": per_page})
+        query = query or {}
+        headers = headers or {}
+        enriched_query = query.copy()
+        enriched_query.update({"page": page, "perPage": per_page, "expand": expand, "filter": filter, "sort": sort})
         response_data = self.client.send(
-            base_path, {"method": "GET", "params": query_params}
+            base_path, {"method": "GET", "params": enriched_query, "headers": headers}
         )
         items: list[BaseModel] = []
         if "items" in response_data:
