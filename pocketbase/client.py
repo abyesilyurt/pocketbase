@@ -119,7 +119,7 @@ class Client:
             data = None
         if response.status_code >= 400:
             raise ClientResponseError(
-                f"Response error. Status code:{response.status_code}",
+                f"{response.reason_phrase}: {response.json()['message']}",
                 url=response.url,
                 status=response.status_code,
                 data=data,
