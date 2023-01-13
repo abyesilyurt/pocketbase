@@ -42,7 +42,7 @@ class Users(CrudService):
         return User(data)
 
     def base_crud_path(self) -> str:
-        return "/api/users"
+        return "/api/collections/users"
 
     def auth_response(self, response_data: Any) -> UserAuthResponse:
         """Prepare successful authorization response."""
