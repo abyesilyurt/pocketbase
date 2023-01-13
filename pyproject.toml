@@ -1,9 +1,13 @@
 [project]
 name = "pocketbase"
+packages = [
+    { include = "pocketbase" },
+]
 description = "PocketBase SDK for python."
 requires-python = ">=3.7"
 license = "MIT"
 authors = [
+    { name = "Aziz Berkay Yesilyurt", email = "abyesilyurt@gmail.com" },
     { name = "Vithor Jaeger", email = "vaphes@gmail.com" },
 ]
 classifiers = [
@@ -20,24 +24,26 @@ classifiers = [
 keywords = "pocketbase sdk"
 dependencies = ["httpx>=0.23.0"]
 dynamic = ["readme", "version"]
-
 [project.urls]
-"Homepage" = "https://github.com/vaphes/pocketbase"
-"Source" = "https://github.com/vaphes/pocketbase"
-"Bug Tracker" = "https://github.com/vaphes/pocketbase/issues"
+"Homepage" = "https://github.com/abyesilyurt/pocketbase"
+"Source" = "https://github.com/abyesilyurt/pocketbase"
+"Bug Tracker" = "https://github.com/abyesilyurt/pocketbase/issues"
 
 [tool.poetry]
-name = "pocketbase"
+name = "pocketbasex"
+packages = [
+    { include = "pocketbase" },
+]
 version = "0.2.2"
 description = "PocketBase SDK for python."
-authors = ["Vithor Jaeger <vaphes@gmail.com>"]
+authors = ["Aziz Berkay Yesilyurt <abyesilyurt@gmail.com>", "Vithor Jaeger <vaphes@gmail.com>"]
 readme = "README.md"
-homepage = "https://github.com/vaphes/pocketbase"
-repository = "https://github.com/vaphes/pocketbase"
+homepage = "https://github.com/abyesilyurt/pocketbase"
+repository = "https://github.com/abyesilyurt/pocketbase"
 keywords = ["pocketbase", "sdk"]
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/vaphes/pocketbase/issues"
+"Bug Tracker" = "https://github.com/abyesilyurt/pocketbase/issues"
 
 [tool.poetry.dependencies]
 python = "^3.7"
