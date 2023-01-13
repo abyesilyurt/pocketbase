@@ -73,7 +73,7 @@ class Client:
                 auth_type = "User"
             config["headers"] = config.get("headers", {})
             config["headers"].update(
-                {"Authorization": f"{auth_type} {self.auth_store.token}"}
+                {"Authorization": f"Bearer {self.auth_store.token}"}
             )
         # build url + path
         url = self.build_url(path)
