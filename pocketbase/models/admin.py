@@ -15,4 +15,4 @@ class Admin(BaseModel):
         super().load(data)
         self.avatar = data.get("avatar", 0)
         self.email = data.get("email", "")
-        self.last_reset_sent_at = to_datetime(data.get("lastResetSentAt", ""))
+        # self.last_reset_sent_at = to_datetime(data.get("lastResetSentAt", ""))
